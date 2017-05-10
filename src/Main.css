@@ -1,0 +1,14 @@
+.Main--header {
+  background-color: #3367d6;
+  padding: .75em;
+  margin-bottom: none;
+  color: #fff;
+  box-shadow: 0 0 4px rgba(0,0,0,.14),
+              0 4px 8px rgba(0,0,0,.28);
+}
+h1 {
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  line-height: 44px;
+  margin-left: 3em;
+}

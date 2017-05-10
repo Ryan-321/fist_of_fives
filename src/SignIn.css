@@ -1,0 +1,58 @@
+.SignIn {
+  width: 70%;
+  margin: 3em auto;
+  text-align: center;
+}
+
+.SignIn--section {
+  width: 50%;
+  margin: 0;
+  height: 500px;
+  display: inline-block;
+}
+
+.SignIn--section-wrapper {
+  position: relative;
+}
+
+span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+h2 {
+  color: rgba(0,0,0,.87);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 32px;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+p {
+  color: rgba(0,0,0,0.54);
+  font-size: 16px;
+  line-height: 24px;
+  text-align: left;
+}
+
+.Icon--google {
+  width: 200px;
+  padding: 3em;
+}
+
+.Icon--github {
+  width: 300px;
+}
+
+button {
+  padding: .5em 1.75em;
+  font-size: 1.5em;
+  background-color: #039be5;
+  border: none;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  color: #fff;
+  display: block;
+  margin: 0 auto;
+}
