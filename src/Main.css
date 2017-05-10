@@ -6,6 +6,10 @@
   box-shadow: 0 0 4px rgba(0,0,0,.14),
               0 4px 8px rgba(0,0,0,.28);
 }
+
+.Main--section-container {
+  position: relative;
+}
 h1 {
   font-family: Roboto, sans-serif;
   font-weight: 500;

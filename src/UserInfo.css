@@ -1,0 +1,10 @@
+.UserInfo {
+  background-color: #fff;
+  display: inline-block;
+  width: 20%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}

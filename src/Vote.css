@@ -1,0 +1,23 @@
+.Vote {
+  margin-left: 20%;
+  display: inline-block;
+}
+
+.Vote--header {
+  height: 150px;
+}
+
+.Vote--button-container {
+  text-align: center;
+  margin-left: 3em;
+}
+
+.Vote--button {
+  padding: .5em 1.75em;
+  font-size: 1.5em;
+  background-color: #039be5;
+  border: none;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  color: #fff;
+  margin-left: 1em;
+}

@@ -13,14 +13,14 @@ class SignIn extends Component {
         <div className="SignIn--section-wrapper">
           <section className="SignIn--section">
             <img src="/images/google_icon.png" alt="Github Logo" className="Icon--google" />
-            <button onClick={() => auth.signInWithPopup(googleAuthProvider)}>
+            <button className="SignIn--button" onClick={() => auth.signInWithPopup(googleAuthProvider)}>
               Sign In
             </button>
           </section>
           <span>or</span>
           <section className="SignIn--section">
             <img src="/images/github_logo.png" alt="Github Logo" className="Icon--github" />
-            <button onClick={() => auth.signInWithPopup(githubAuthProvider)}>
+            <button className="SignIn--button" onClick={() => auth.signInWithPopup(githubAuthProvider)}>
               Sign In
             </button>
           </section>
