@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import { auth, googleAuthProvider } from './firebase';
+import { auth, googleAuthProvider, githubAuthProvider } from './firebase';
 import './SignIn.css';
 
 class SignIn extends Component {
@@ -20,7 +20,7 @@ class SignIn extends Component {
           <span>or</span>
           <section className="SignIn--section">
             <img src="/images/github_logo.png" alt="Github Logo" className="Icon--github" />
-            <button>
+            <button onClick={() => auth.signInWithPopup(githubAuthProvider)}>
               Sign In
             </button>
           </section>
