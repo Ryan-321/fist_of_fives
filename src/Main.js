@@ -22,7 +22,7 @@ class Main extends Component {
       }
     })
   }
-  
+
   render () {
     const { currentUser } = this.state;
     return (
@@ -32,7 +32,7 @@ class Main extends Component {
         </header>
         {currentUser
           ? <section className="Main--section-container">
-            <UserInfo photoURL={currentUser.photoURL}/>
+            <UserInfo photoURL={currentUser.photoURL} displayName={currentUser.displayName} />
             <Vote />
           </section>
           : <SignIn />
