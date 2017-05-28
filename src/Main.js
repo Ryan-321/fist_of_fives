@@ -1,45 +1,57 @@
-import React, { Component } from 'react';
-import { auth, database } from './firebase';
-import SignIn from './SignIn';
+import React, { Component } from 'react'
+import { auth, database } from './firebase'
+import SignIn from './SignIn'
 import Vote from './Vote'
-import UserInfo from './UserInfo';
-import './Main.css';
+import UserInfo from './UserInfo'
+import Material from './Material'
+import './Main.css'
 
 class Main extends Component {
   constructor (props) {
-    super(props);
+    super(props)
     this.state = {
       currentUser: null,
       polls: {}
     }
+    this.handleUser = this.handleUser.bind(this)
   }
 
   componentDidMount () {
     auth.onAuthStateChanged((currentUser) => {
-      if(currentUser) {
-        console.log(currentUser);
-        this.setState({ currentUser }); // set the state to user logged in
+      if (currentUser) {
+        console.log(currentUser)
+        this.setState({ currentUser }) // set the state to user logged in
       }
     })
   }
 
+  handleUser (currentUser) {
+    this.setState({ currentUser })
+  }
+
   render () {
-    const { currentUser } = this.state;
+    const { currentUser } = this.state
     return (
-      <div className="Main">
-        <header className="Main--header">
+      <div className='Main'>
+        <header className='Main--header'>
           <h1>Fist of Fives</h1>
         </header>
         {currentUser
-          ? <section className="Main--section-container">
-            <UserInfo photoURL={currentUser.photoURL} displayName={currentUser.displayName} />
-            <Vote />
+          ? <section className='Main--section-container'>
+            <UserInfo
+              currentUser={currentUser}
+              handleUser={this.handleUser}
+            />
+            <div className='Main--wrapper'>
+              <Material />
+              <Vote currentUser={currentUser} />
+            </div>
           </section>
           : <SignIn />
         }
       </div>
-    );
+    )
   }
 }
 
-export default Main;
+export default Main
