@@ -7,13 +7,15 @@
               0 4px 8px rgba(0,0,0,.28);
 }
 
-.Main--wrapper {
-  display: inline-block;
+.Main--section-container {
+  z-index: -1;
 }
 
-.Main--section-container {
-  /*position: relative;*/
+.Main--div-wrapper {
+  display: inline-block;
+  vertical-align: top;
 }
+
 
 h1 {
   font-family: Roboto, sans-serif;

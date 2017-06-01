@@ -10,8 +10,7 @@ class Main extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      currentUser: null,
-      polls: {}
+      currentUser: null
     }
     this.handleUser = this.handleUser.bind(this)
   }
@@ -20,7 +19,7 @@ class Main extends Component {
     auth.onAuthStateChanged((currentUser) => {
       if (currentUser) {
         console.log(currentUser)
-        this.setState({ currentUser }) // set the state to user logged in
+        this.setState({ currentUser })
       }
     })
   }
@@ -42,7 +41,7 @@ class Main extends Component {
               currentUser={currentUser}
               handleUser={this.handleUser}
             />
-            <div className='Main--wrapper'>
+            <div className='Main--div-wrapper'>
               <Material />
               <Vote currentUser={currentUser} />
             </div>
