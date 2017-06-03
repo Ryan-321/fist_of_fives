@@ -7,9 +7,12 @@ class Subject extends Component {
   }
 
   render () {
-    const { subject, handleClick } = this.props
+    const { subject, handleClick, id } = this.props
     return (
-      <li className='Subject' onClick={() => handleClick(subject)}>{subject}</li>
+      <li className='Subject' onClick={() => handleClick(id)}>
+        {subject}
+        <span className='Subject--span'>X</span>
+      </li>
     )
   }
 }

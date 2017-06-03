@@ -13,24 +13,20 @@
   position: relative;
 }
 
-
-.Subject::after {
+.Subject--span {
   -webkit-transition: opacity .25s, right .3s, bottom .3s;
   transition: opacity .25s, right .3s, bottom .3s;
   opacity: 0;
   position: absolute;
-  content: "X";
   bottom: 0;
   right: -1px;
-  content: "X";
   font-family: 'Cousine', monospace;
   font-size: 15px;
   text-shadow: 1px 1px 1px rgba(0,0,0,.16);
   color: #616161;
+
 }
 
-.Subject:hover::after {
-  right: -5px;
-  bottom: -5px;
+.Subject--span:hover {
   opacity: 1;
 }

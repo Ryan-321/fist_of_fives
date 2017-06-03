@@ -5,31 +5,19 @@ import './Vote.css'
 class Vote extends Component {
   constructor (props) {
     super(props)
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  handleClick (value) {
-    console.log('value', value)
-    console.log('currentUser', this.props.currentUser.displayName)
-    // const currentUser = this.props.currentUser
-    // database.ref('/material')
-    //   .child('vote')
-    //   .child(value)
-    //   .child(currentUser.uid)
-    //   .set(currentUser.displayName)
   }
 
   render () {
-    const { currentSubject } = this.props
+    const { currentSubject, handleVote } = this.props
     return (
       <div className='Vote'>
         <h2>Subject: {currentSubject}</h2>
         <div className='Vote--button-container'>
-          <button className='Vote--button' onClick={() => this.handleClick(1)}>One</button>
-          <button className='Vote--button' onClick={() => this.handleClick(2)}>Two</button>
-          <button className='Vote--button' onClick={() => this.handleClick(3)}>Three</button>
-          <button className='Vote--button' onClick={() => this.handleClick(4)}>Four</button>
-          <button className='Vote--button' onClick={() => this.handleClick(5)}>Five</button>
+          <button className='Vote--button' onClick={() => handleVote(1)}>One</button>
+          <button className='Vote--button' onClick={() => handleVote(2)}>Two</button>
+          <button className='Vote--button' onClick={() => handleVote(3)}>Three</button>
+          <button className='Vote--button' onClick={() => handleVote(4)}>Four</button>
+          <button className='Vote--button' onClick={() => handleVote(5)}>Five</button>
         </div>
       </div>
     )

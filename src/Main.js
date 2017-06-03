@@ -11,9 +11,9 @@ class Main extends Component {
     super(props)
     this.state = {
       currentUser: null,
-      currentSubject: ''
+      currentSubject: '',
+      currentSubjectId: ''
     }
-    this.usersRef = database.ref('/users')
     this.handleUser = this.handleUser.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
@@ -31,12 +31,19 @@ class Main extends Component {
     this.setState({ currentUser })
   }
 
-  handleClick (subject) {
-    this.setState({currentSubject: subject})
+  handleClick (id) {
+    database.ref(`/subjects/${id}`).once('value').then((snapshot) => {
+      this.setState({currentSubject: snapshot.val().subject})
+      this.setState({currentSubjectId: id})
+    })
+  }
+
+  handleVote (value) {
+    console.log(value)
   }
 
   render () {
-    const { currentUser, currentSubject } = this.state
+    const { currentUser, currentSubject, currentSubjectId } = this.state
     return (
       <div className='Main'>
         <header className='Main--header'>
@@ -50,7 +57,11 @@ class Main extends Component {
             />
             <div className='Main--div-wrapper'>
               <SubjectContainer handleClick={this.handleClick} />
-              <Vote currentUser={currentUser} currentSubject={currentSubject} />
+              <Vote
+                currentUser={currentUser}
+                currentSubject={currentSubject}
+                handleVote={this.handleVote}
+              />
             </div>
           </section>
           : <SignIn />

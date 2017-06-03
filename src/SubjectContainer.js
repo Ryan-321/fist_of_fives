@@ -12,28 +12,29 @@ class SubjectContainer extends Component {
     }
     this.subjectsRef = database.ref('/subjects')
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.updateState = this.updateState.bind(this)
+    this.setSubjects = this.setSubjects.bind(this)
   }
 
   handleSubmit (event) {
     event.preventDefault()
     this.subjectsRef.push({subject: this.state.subject})
-    this.updateState()
+    this.setSubjects()
   }
 
-  updateState () {
+  setSubjects () {
     this.subjectsRef.once('value').then((snapshot) => {
       let obj = snapshot.val()
       let arr = []
       for (var key in obj) {
-        arr.push(obj[key].subject)
+        const o = {id: key, subject: obj[key].subject}
+        arr.push(o)
       }
       this.setState({subjects: arr})
     })
   }
 
   componentDidMount () {
-    this.updateState()
+    this.setSubjects()
   }
 
   render () {
@@ -57,10 +58,11 @@ class SubjectContainer extends Component {
         </form>
         <ul>
           {
-            subjects.map((sub, key) => {
+            subjects.map((obj, key) => {
               return <Subject
-                        key={key}
-                        subject={sub}
+                        key={obj.id}
+                        id={obj.id}
+                        subject={obj.subject}
                         handleClick={handleClick}
                       />
             })
