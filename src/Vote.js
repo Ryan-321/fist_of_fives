@@ -20,8 +20,10 @@ class Vote extends Component {
   }
 
   render () {
+    const { currentSubject } = this.props
     return (
       <div className='Vote'>
+        <h2>Subject: {currentSubject}</h2>
         <div className='Vote--button-container'>
           <button className='Vote--button' onClick={() => this.handleClick(1)}>One</button>
           <button className='Vote--button' onClick={() => this.handleClick(2)}>Two</button>

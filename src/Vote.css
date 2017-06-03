@@ -2,6 +2,10 @@
   padding: 1em;
 }
 
+.Vote h2 {
+  padding-bottom: 1em;
+}
+
 .Vote--button-container {
   text-align: center;
   margin-left: 3em;

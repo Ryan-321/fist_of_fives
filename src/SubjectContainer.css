@@ -1,0 +1,23 @@
+.SubjectContainer {
+  padding: 1em;
+  
+}
+
+.SubjectContainer--h3 {
+  display: inline-block;
+}
+
+.SubjectContainer--form {
+  text-align: center;
+  display: inline;
+}
+
+.SubjectContainer--form input {
+  padding: .5em;
+  width: 20%;
+  margin: 0 2em;
+}
+
+.SubjectContainer ul {
+  padding-left: 0;
+}

@@ -3,16 +3,19 @@ import { auth, database } from './firebase'
 import SignIn from './SignIn'
 import Vote from './Vote'
 import UserInfo from './UserInfo'
-import Material from './Material'
+import SubjectContainer from './SubjectContainer'
 import './Main.css'
 
 class Main extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      currentUser: null
+      currentUser: null,
+      currentSubject: ''
     }
+    this.usersRef = database.ref('/users')
     this.handleUser = this.handleUser.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount () {
@@ -28,8 +31,12 @@ class Main extends Component {
     this.setState({ currentUser })
   }
 
+  handleClick (subject) {
+    this.setState({currentSubject: subject})
+  }
+
   render () {
-    const { currentUser } = this.state
+    const { currentUser, currentSubject } = this.state
     return (
       <div className='Main'>
         <header className='Main--header'>
@@ -42,8 +49,8 @@ class Main extends Component {
               handleUser={this.handleUser}
             />
             <div className='Main--div-wrapper'>
-              <Material />
-              <Vote currentUser={currentUser} />
+              <SubjectContainer handleClick={this.handleClick} />
+              <Vote currentUser={currentUser} currentSubject={currentSubject} />
             </div>
           </section>
           : <SignIn />
