@@ -17,7 +17,10 @@ class SubjectContainer extends Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    this.subjectsRef.push({subject: this.state.subject})
+    const { subject } = this.state
+    const user = this.props.currentUser.displayName
+    const votes = {one: 0, two: 0, three: 0, four: 0, five: 0}
+    this.subjectsRef.push({subject: subject, creator: user, votes})
     this.setSubjects()
   }
 

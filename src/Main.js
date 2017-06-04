@@ -16,6 +16,8 @@ class Main extends Component {
     }
     this.handleUser = this.handleUser.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handleVote = this.handleVote.bind(this)
+
   }
 
   componentDidMount () {
@@ -39,11 +41,18 @@ class Main extends Component {
   }
 
   handleVote (value) {
-    console.log(value)
+    var key = this.state.currentSubjectId
+    database.ref(`/subjects/${key}/votes/${value}`).once('value').then((snapshot) => {
+      var currentValue = snapshot.val()
+      currentValue++
+      database.ref(`/subjects/${key}/votes`)
+      .child(value)
+      .set(currentValue)
+    })
   }
 
   render () {
-    const { currentUser, currentSubject, currentSubjectId } = this.state
+    const { currentUser, currentSubject } = this.state
     return (
       <div className='Main'>
         <header className='Main--header'>
@@ -56,9 +65,8 @@ class Main extends Component {
               handleUser={this.handleUser}
             />
             <div className='Main--div-wrapper'>
-              <SubjectContainer handleClick={this.handleClick} />
+              <SubjectContainer handleClick={this.handleClick} currentUser={currentUser} />
               <Vote
-                currentUser={currentUser}
                 currentSubject={currentSubject}
                 handleVote={this.handleVote}
               />
