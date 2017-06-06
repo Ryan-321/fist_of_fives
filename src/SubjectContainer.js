@@ -19,7 +19,7 @@ class SubjectContainer extends Component {
     event.preventDefault()
     const { subject } = this.state
     const user = this.props.currentUser.displayName
-    const votes = {one: 0, two: 0, three: 0, four: 0, five: 0}
+    const votes = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
     this.subjectsRef.push({subject: subject, creator: user, votes})
     this.setSubjects()
   }

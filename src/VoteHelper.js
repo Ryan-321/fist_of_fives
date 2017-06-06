@@ -28,7 +28,7 @@ const voteHelper = {
       let userFound = false
       let votedFound = snapshot.val()
       if (votedFound) {
-        snapshot.forEach(function (child) {
+        snapshot.forEach((child) => {
           if (user === child.val().name) {
             const oldVote = child.val().vote
             voteHelper.minusVote(key, oldVote)  // NOTE  why wasn't 'this' working here

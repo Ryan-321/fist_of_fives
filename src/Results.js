@@ -4,29 +4,22 @@ import { database } from './firebase'
 class Results extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      currentSubjectId: ''
-    }
-    // this.votesRef = database.ref(`/subjects/${this.state.currentSubjectId}/votes`)
-    // this.votesRef.once('value')
-    //              .then((snapshot) => {
-    //                console.log(snapshot.val())
-    //              })
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.currentSubjectId !== this.props.currentSubjectId) {
-      this.setState({
-        currentSubjectId: nextProps.currentSubjectId
-      })
-    }
   }
 
   render () {
+    const { votes } = this.props
+    console.log('votes', votes)
     return (
-      <h1>
-        {this.state.currentSubjectId}
-      </h1>
+      <div>
+        <h2>Results: </h2>
+        <ul>
+          {
+            votes.map((vote, index) => {
+              return <li key={index}>{vote}</li>
+            })
+          }
+        </ul>
+      </div>
     )
   }
 }

@@ -15,17 +15,18 @@ class Main extends Component {
     this.state = {
       currentUser: null,
       currentSubject: '',
-      currentSubjectId: ''
+      currentSubjectId: '',
+      currentVotes: []
     }
     this.handleUser = this.handleUser.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleVote = this.handleVote.bind(this)
+    this.getVotes = this.getVotes.bind()
   }
 
   componentDidMount () {
     auth.onAuthStateChanged((currentUser) => {
       if (currentUser) {
-        console.log(currentUser)
         this.setState({ currentUser })
       }
     })
@@ -37,8 +38,11 @@ class Main extends Component {
 
   handleClick (id) {
     database.ref(`/subjects/${id}`).once('value').then((snapshot) => {
-      this.setState({currentSubject: snapshot.val().subject})
-      this.setState({currentSubjectId: id})
+      this.setState({
+        currentSubject: snapshot.val().subject,
+        currentSubjectId: id
+        // currentVotes: voteHelper.getVotes(id)
+      })
     })
   }
 
@@ -48,11 +52,26 @@ class Main extends Component {
     if (key) {
       voteHelper.findUserAndUpdate(key, user, value)
       voteHelper.addVote(key, value)
+      // this.setState({currentVotes: voteHelper.getVotes(key)})
     }
   }
 
+//  Promise is causing this to be late, need to find alternative
+  getVotes (key) {
+    let finalVotes = []
+    const query = database.ref(`/subjects/${key}/votes`)
+    query.once('value').then((snapshot) => {
+      let votes = []
+      snapshot.forEach((child) => {
+        votes.push(child.val())
+      })
+      console.log(votes)
+      return votes
+    })
+  }
+
   render () {
-    const { currentUser, currentSubject, currentSubjectId } = this.state
+    const { currentUser, currentSubject, currentVotes } = this.state
     return (
       <div className='Main'>
         <header className='Main--header'>
@@ -70,7 +89,7 @@ class Main extends Component {
                 currentSubject={currentSubject}
                 handleVote={this.handleVote}
               />
-              <Results currentSubjectId={currentSubjectId} />
+              <Results votes={currentVotes} />
             </div>
           </section>
           : <SignIn />
