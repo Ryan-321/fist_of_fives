@@ -4,6 +4,7 @@ import SignIn from './SignIn'
 import Vote from './Vote'
 import UserInfo from './UserInfo'
 import SubjectContainer from './SubjectContainer'
+import voteHelper from './VoteHelper'
 import './Main.css'
 
 class Main extends Component {
@@ -17,7 +18,6 @@ class Main extends Component {
     this.handleUser = this.handleUser.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleVote = this.handleVote.bind(this)
-
   }
 
   componentDidMount () {
@@ -42,13 +42,11 @@ class Main extends Component {
 
   handleVote (value) {
     var key = this.state.currentSubjectId
-    database.ref(`/subjects/${key}/votes/${value}`).once('value').then((snapshot) => {
-      var currentValue = snapshot.val()
-      currentValue++
-      database.ref(`/subjects/${key}/votes`)
-      .child(value)
-      .set(currentValue)
-    })
+    var user = this.state.currentUser.displayName
+    if (key) {
+      voteHelper.findUserAndUpdate(key, user, value)
+      voteHelper.addVote(key, value)
+    }
   }
 
   render () {
