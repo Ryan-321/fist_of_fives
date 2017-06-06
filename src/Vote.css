@@ -16,6 +16,8 @@
   font-size: 1.5em;
   background-color: #039be5;
   border: none;
+  -moz-box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
   color: #fff;
   margin-left: 1em;

@@ -4,6 +4,8 @@ import SignIn from './SignIn'
 import Vote from './Vote'
 import UserInfo from './UserInfo'
 import SubjectContainer from './SubjectContainer'
+import Results from './Results'
+
 import voteHelper from './VoteHelper'
 import './Main.css'
 
@@ -50,7 +52,7 @@ class Main extends Component {
   }
 
   render () {
-    const { currentUser, currentSubject } = this.state
+    const { currentUser, currentSubject, currentSubjectId } = this.state
     return (
       <div className='Main'>
         <header className='Main--header'>
@@ -68,6 +70,7 @@ class Main extends Component {
                 currentSubject={currentSubject}
                 handleVote={this.handleVote}
               />
+              <Results currentSubjectId={currentSubjectId} />
             </div>
           </section>
           : <SignIn />

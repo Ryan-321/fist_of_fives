@@ -22,6 +22,7 @@ const voteHelper = {
     })
   },
   findUserAndUpdate: (key, user, value) => {
+    // NOTE probably could split this up into smaller functions
     var query = database.ref(`/subjects/${key}/voted`)
     query.once('value').then((snapshot) => {
       let userFound = false
@@ -30,8 +31,8 @@ const voteHelper = {
         snapshot.forEach(function (child) {
           if (user === child.val().name) {
             const oldVote = child.val().vote
-            voteHelper.minusVote(key, oldVote)
-            query.child(child.key).update({vote: value})  // reset users vote record
+            voteHelper.minusVote(key, oldVote)  // NOTE  why wasn't 'this' working here
+            query.child(child.key).update({vote: value})
             userFound = true
           }
         })
