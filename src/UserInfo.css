@@ -1,9 +1,9 @@
 .UserInfo {
-  background-color: #fff;
   display: inline-block;
   width: 20%;
   height: 100vh;
   text-align: center;
+  background-color: #fff;
 }
 
 .UserInfo--img {

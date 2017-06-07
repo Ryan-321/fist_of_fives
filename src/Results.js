@@ -15,8 +15,9 @@ class Results extends Component {
         <ul>
           {
             votes.map((vote, index) => {
+              let num = index + 1
               return <li key={index} className='Results--li'>
-                <span className='Results--span'>{index}</span>
+                <span className='Results--span'>Voted: {num}</span>
                 {vote}
               </li>
             })
