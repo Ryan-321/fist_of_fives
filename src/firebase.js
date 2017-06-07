@@ -2,7 +2,7 @@ import firebase from 'firebase'
 
 const config = {
   apiKey: 'AIzaSyCzUizPWAVQd2Rla85zmCAa1l9FkihOBXw',
-  authDomain: 'fist-of-fives.firebaseapp.com',
+  // authDomain: 'fist-of-fives.firebaseapp.com',
   databaseURL: 'https://fist-of-fives.firebaseio.com',
   projectId: 'fist-of-fives',
   storageBucket: 'fist-of-fives.appspot.com',
