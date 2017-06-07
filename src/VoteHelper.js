@@ -31,7 +31,8 @@ const voteHelper = {
         snapshot.forEach((child) => {
           if (user === child.val().name) {
             const oldVote = child.val().vote
-            voteHelper.minusVote(key, oldVote)  // NOTE  why wasn't 'this' working here
+            voteHelper.minusVote(key, oldVote)
+            // NOTE  why wasn't 'this' working here ^w/ bind
             query.child(child.key).update({vote: value})
             userFound = true
           }
@@ -43,9 +44,9 @@ const voteHelper = {
     })
   },
   getVotes (key) {
-    let votes = []
     const query = database.ref(`/subjects/${key}/votes`)
     let buildVotes = query.once('value').then((snapshot) => {
+      let votes = []
       snapshot.forEach((child) => {
         votes.push(child.val())
       })
