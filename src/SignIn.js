@@ -17,7 +17,7 @@ class SignIn extends Component {
               Sign In
             </button>
           </section>
-          <span>or</span>
+          <span className='SignIn--span'>or</span>
           <section className='SignIn--section'>
             <img src='/images/github_logo.png' alt='Github Logo' className='Icon--github' />
             <button className='SignIn--button' onClick={() => auth.signInWithPopup(githubAuthProvider)}>

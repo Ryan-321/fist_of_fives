@@ -21,7 +21,6 @@ class Main extends Component {
     this.handleUser = this.handleUser.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleVote = this.handleVote.bind(this)
-    this.getVotes = this.getVotes.bind()
   }
 
   componentDidMount () {
@@ -37,36 +36,31 @@ class Main extends Component {
   }
 
   handleClick (id) {
-    database.ref(`/subjects/${id}`).once('value').then((snapshot) => {
-      this.setState({
-        currentSubject: snapshot.val().subject,
-        currentSubjectId: id
-        // currentVotes: voteHelper.getVotes(id)
+      database.ref(`/subjects/${id}`).once('value').then((snapshot) => {
+        this.setState({
+          currentSubject: snapshot.val().subject,
+          currentSubjectId: id
+        })
+      }).then(() => {
+        voteHelper.getVotes(id).then((votes) => {
+          this.setState({currentVotes: votes})
       })
     })
   }
 
   handleVote (value) {
-    var key = this.state.currentSubjectId
-    var user = this.state.currentUser.displayName
-    if (key) {
-      voteHelper.findUserAndUpdate(key, user, value)
-      voteHelper.addVote(key, value)
-      // this.setState({currentVotes: voteHelper.getVotes(key)})
-    }
-  }
-
-//  Promise is causing this to be late, need to find alternative
-  getVotes (key) {
-    let finalVotes = []
-    const query = database.ref(`/subjects/${key}/votes`)
-    query.once('value').then((snapshot) => {
-      let votes = []
-      snapshot.forEach((child) => {
-        votes.push(child.val())
+    new Promise((resolve, reject) => {
+      let key = this.state.currentSubjectId
+      let user = this.state.currentUser.displayName
+      if (key) {
+        voteHelper.findUserAndUpdate(key, user, value)
+        voteHelper.addVote(key, value)
+      }
+      resolve(key)
+    }).then((key) => {
+      voteHelper.getVotes(key).then((votes) => {
+        this.setState({currentVotes: votes})
       })
-      console.log(votes)
-      return votes
     })
   }
 

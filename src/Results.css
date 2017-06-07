@@ -1,0 +1,21 @@
+.Results--li{
+  list-style-type: none;
+  display: inline-block;
+  width: 5em;
+  margin-left: 1em;
+  text-align: center;
+  padding: 3em;
+  position: relative;
+  /*font-size: 1.25em;*/
+  background-color: #039be5;
+  -moz-box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  color: #fff;
+}
+
+.Results--span {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}

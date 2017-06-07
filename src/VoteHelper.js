@@ -41,6 +41,17 @@ const voteHelper = {
         .push({name: user, vote: value})
       }
     })
+  },
+  getVotes (key) {
+    let votes = []
+    const query = database.ref(`/subjects/${key}/votes`)
+    let buildVotes = query.once('value').then((snapshot) => {
+      snapshot.forEach((child) => {
+        votes.push(child.val())
+      })
+      return votes
+    })
+    return buildVotes
   }
 }
 
