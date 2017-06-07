@@ -45,6 +45,18 @@ class SubjectContainer extends Component {
     const { handleClick } = this.props
     return (
       <section className='SubjectContainer'>
+        <ul>
+          {
+            subjects.map((obj, key) => {
+              return <Subject
+                        key={obj.id}
+                        id={obj.id}
+                        subject={obj.subject}
+                        handleClick={handleClick}
+                      />
+            })
+          }
+        </ul>
         <h3 className='SubjectContainer--h3'>Pick a Subject or new: </h3>
         <form className='SubjectContainer--form'>
           <input
@@ -59,18 +71,6 @@ class SubjectContainer extends Component {
               Submit
           </button>
         </form>
-        <ul>
-          {
-            subjects.map((obj, key) => {
-              return <Subject
-                        key={obj.id}
-                        id={obj.id}
-                        subject={obj.subject}
-                        handleClick={handleClick}
-                      />
-            })
-          }
-        </ul>
       </section>
     )
   }
